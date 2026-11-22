@@ -24,6 +24,6 @@ RUN useradd --system --uid 10001 --create-home app \
     && chown -R app:app /app /app-data
 
 USER 10001:10001
-EXPOSE 8000
+EXPOSE 10000
 
-CMD ["uvicorn", "app.main:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "uvicorn app.main:create_app --factory --host 0.0.0.0 --port ${PORT:-10000}"]
